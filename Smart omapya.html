@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smart Omapya</title>
+
+<link ref="stylesheet" href="saved pictures/smartomapya.css">
+
+</head>
+
+<body>
+
+<section id="rolePage">
+    <div class="role-wrapper">
+
+        <div class="logo">
+            <h1>Smart Omapya</h1>
+
+            <p>
+                Smart technology for smarter agriculture
+            </p>
+        </div>
+
+        <div class="role-box">
+
+            <h2>Welcome</h2>
+
+            <p class="choose-text">
+                Before we get started, tell us who you are.
+            </p>
+
+            <div class="role-container">
+
+                <button
+                    class="role-card farmer-card"
+                    onclick="chooseRole('farmer', this)">
+                    <h3>I'm a Farmer</h3>
+
+                    <p>
+                        Get crop recommendations, disease detection and farming support.
+                    </p>
+                </button>
+
+                <button
+                    class="role-card student-card"
+                    onclick="chooseRole('student', this)">
+
+                    <h3>I'm a Student</h3>
+
+                    <p>
+                        Learn about agriculture,
+                        research and test your knowledge.
+                    </p>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="app">
+<header class="app-header">
+
+    <h1>Smart Omapya</h1>
+
+    <p id="roleText">
+        Emporewing farmers and students through smark agriculture</p>
+</header>
+
+<section id="farmerHome" class="screen">
+    <div class="welcome-card">
+
+        <h2>Farmer Dashboard</h2>
+
+        <p>
+            Access smart tools to help you understand your
+            crops, field conditions and farming decisions.
+        </p>
+    </div>
+
+    <div class="tools-grid">
+
+        <button
+            class="tool-card green"
+            onclick="openScreen('detectorScreen')">
+
+            <h3>Crop & Weed Detector</h3>
+
+            <p>
+                Upload a crop image and receive a sample
+                crop and weed analysis.
+            </p>
+        </button>
+
+        <button
+            class="tool-card orange"
+            onclick="openScreen('diseaseScreen')">
+
+            <h3>Crop Disease Detector</h3>
+
+            <p>
+                Upload a leaf image and check for possible
+                crop diseases.
+            </p>
+        </button>
+
+        <button
+            class="tool-card dark-green"
+            onclick="openScreen('recommendationScreen')">
+
+            <h3>Crop Recommendations</h3>
+
+            <p>
+                Explore crops according to soil, water
+                and growing conditions.
+            </p>
+        </button>
+
+        <button
+            class="tool-card olive"
+            onclick="openScreen('conditionsScreen')">
+
+            <h3>Field Conditions</h3>
+
+            <p>Enter field conditions and receive farming advice.</p>
+        </button>
+    </div>
+</section>
+
+<section id="studentHome" class="screen">
+    <div class="welcome-card">
+
+        <h2>Student Dashboard</h2>
+
+        <p>
+            Learn agriculture, explore research topics
+            and test your agricultural knowledge.
+        </p>
+
+    </div>
+
+    <div class="tools-grid">
+
+        <button
+            class="tool-card dark-green"
+            onclick="openScreen('quizScreen')">
+
+            <h3>Agriculture Quiz</h3>
+
+            <p>
+                Test your agricultural knowledge
+                through different levels.
+            </p>
+
+        </button>
+
+        <button
+            class="tool-card orange"
+            onclick="openScreen('researchScreen')">
+
+            <h3>Research Hub</h3>
+
+            <p>
+                Explore agriculture, climate,
+                soil and modern farming topics.
+            </p>
+        </button>
+
+        <button
+            class="tool-card green"
+            onclick="openScreen('recommendationScreen')">
+          
+            <h3>Crop Knowledge</h3>
+
+           <p>Learn about crops and their growing requirements.</p>
+        </button>
+    </div>
+</section>
+
+<section id="detectorScreen" class="screen">
+    <div class="feature-page">
+
+        <h2>Crop & Weed Detector</h2>
+
+        <p>
+            Upload an image of a crop or weed.
+        </p>
+
+        <input
+            type="file"
+            id="imageInput"
+            accept="image/*">
+
+        <img
+            id="preview"
+            class="preview-image"
+            alt="Selected crop image">
+
+        <button
+            class="action-button"
+            onclick="analyzeImage()">
+            Analyze Image
+        </button>
+
+        <div
+            id="aiResult"
+            class="result"></div>
+
+        <button
+            class="back-button"
+            onclick="goHome()">
+            Back
+        </button>
+    </div>
+</section>
+
+<section id="diseaseScreen" class="screen">
+    <div class="feature-page">
+
+        <h2>Crop Disease Detector</h2>
+
+        <p>
+            Upload a picture of a crop leaf to check
+            for a possible disease.
+        </p>
+
+        <input
+            type="file"
+            id="diseaseInput"
+            accept="image/*">
+
+        <img
+            id="diseasePreview"
+            class="preview-image"
+            alt="Selected disease image">
+
+        <button
+            class="action-button"
+            onclick="analyzeDisease()">
+            Analyze Disease
+        </button>
+
+        <div
+            id="diseaseResult"
+            class="result"
+        ></div>
+
+        <button
+            class="back-button"
+            onclick="goHome()" >
+            Back
+        </button>
+    </div>
+</section>
+
+<section id="recommendationScreen" class="screen">
+    <div class="feature-page">
+
+        <h2>Crop Recommendations</h2>
+
+        <p>
+            Explore crops that may be suitable for
+            different growing conditions.
+        </p>
+
+        <h3>Maize</h3>
+
+        <p>
+            Soil: Loamy<br>
+            Water: Moderate<br>
+            Spacing: 30cm
+        </p>
+
+        <h3>Tomato</h3>
+
+        <p>
+            Soil: Sandy Loam<br>
+            Water: High<br>
+            Spacing: 40cm
+        </p>
+
+        <h3>Spinach</h3>
+
+        <p>
+            Soil: Loam soil<br>
+            Water: Moderate<br>
+            Spacing: 40cm
+        </p>
+
+        <h3>Carrot</h3>
+
+        <p>
+            Soil: Sandy Loam<br>
+            Water: High<br>
+            Spacing: 40cm
+        </p>
+
+        <button
+            class="back-button"
+            onclick="goHome()">
+            Back
+        </button>
+    </div>
+</section>
+
+<section id="conditionsScreen" class="screen">
+
+    <div class="feature-page">
+
+        <h2>Field Conditions</h2>
+
+        <label>Soil Condition</label>
+
+        <select id="soil">
+
+            <option value="">Select</option>
+
+            <option value="dry">
+                Dry
+            </option>
+
+            <option value="moist">
+                Moist
+            </option>
+
+            <option value="wet">
+                Wet
+            </option>
+        </select>
+
+        <label>Weather</label>
+
+        <select id="weather">
+
+            <option value="">Select</option>
+
+            <option value="sunny">
+                Sunny
+            </option>
+
+            <option value="rainy">
+                Rainy
+            </option>
+
+            <option value="windy">
+                Windy
+            </option>
+        </select>
+
+        <label>Leaf Color</label>
+
+        <select id="Color">
+
+            <option value="">Select</option>
+
+            <option value="yellow">
+                Yellow
+            </option>
+
+            <option value="green">
+                Green
+            </option>
+        </select>
+
+        <label>Pests</label>
+
+        <select id="pests">
+
+            <option value="">Select</option>
+
+            <option value="yes">
+                Yes
+            </option>
+
+            <option value="no">
+                No
+            </option>
+        </select>
+
+        <button
+            class="action-button"
+            onclick="getAdvice()">
+            Get Recommendation
+        </button>
+
+        <div
+            id="conditionResult"
+            class="result"
+        ></div>
+
+        <button
+            class="back-button"
+            onclick="goHome()">
+            Back
+        </button>
+    </div>
+</section>
+
+/AGRICULTURE QUIZ
+
+<section id="quizScreen" class="screen">
+    <div class="feature-page">
+
+        <h2>Agriculture Quiz</h2>
+
+        <p>Select your level.</p>
+
+        <div class="level-buttons">
+
+            <button onclick="selectLevel('89')">
+                Grade 8-9
+            </button>
+
+            <button onclick="selectLevel('1011')">
+                Grade 10-11
+            </button>
+
+            <button onclick="selectLevel('AS')">
+                AS Level
+            </button>
+        </div>
+
+        <div
+            id="quizArea"
+            style="display:none; margin-top:25px;">
+            
+          <h3 id="question"></h3>
+
+            <div class="answer-buttons">
+                <button
+                    class="true-button"
+                    onclick="answer(true)">
+                    True
+                </button>
+
+                <button
+                    class="false-button"
+                    onclick="answer(false)">
+                    False
+                </button>
+            </div>
+
+            <p
+                id="score"
+                class="score">
+                Blue: 0 | Red: 0
+            </p>
+        </div>
+
+        <button
+            class="back-button"
+            onclick="goHome()">
+            Back
+        </button>
+    </div>
+</section>
+
+     /RESEARCH HUB
+
+<section id="researchScreen" class="screen">
+    <div class="feature-page">
+
+        <h2>Research Hub</h2>
+        <p>
+            Explore different areas of agriculture
+            and learn more about modern farming.
+        </p>
+
+        <div class="topic-list">
+
+            <button
+                class="topic-button"
+                onclick="showTopic('soil')">
+                Soil Science
+            </button>
+
+            <button
+                class="topic-button"
+                onclick="showTopic('disease')">
+                Crop Diseases
+            </button>
+
+            <button
+                class="topic-button"
+                onclick="showTopic('climate')">
+                Climate Change
+            </button>
+
+            <button
+                class="topic-button"
+                onclick="showTopic('precision')">
+                Precision Agriculture
+            </button>
+
+            <button
+                class="topic-button"
+                onclick="showTopic('livestock')">
+                Livestock Husbandry
+            </button>
+        </div>
+
+        <div
+            id="researchResult"
+            class="result"
+        ></div>
+
+        <button
+            class="back-button"
+            onclick="goHome()">
+            Back
+        </button>
+    </div>
+</section>
+
+/PROFILE
+  
+<section id="profileScreen" class="screen">
+    <div class="profile-card">
+
+        <h2>Profile</h2>
+        <div class="profile-info">
+            <strong>Current role</strong>
+            <p id="profileRole">
+                Not selected</p>
+        </div>
+
+        <p>Smart Omapya provides agricultural tools
+            designed for farmers and students.</p>
+
+        <button
+            class="switch-button"
+            onclick="switchRole()">
+            Switch Role
+        </button>
+    </div>
+</section>
+
+<nav class="bottom-nav" id="bottomNav">
+
+    <button
+        class="nav-button active"
+        id="homeNav"
+        onclick="goHome()">
+        Home
+    </button>
+
+    <button
+        class="nav-button"
+        id="profileNav"
+        onclick="openScreen('profileScreen')">
+        Profile
+    </button>
+
+    <button
+        class="nav-button"
+        onclick="switchRole()">
+        Switch
+    </button>
+</nav>
+</div>
+<script>
+
+</script>
+
+</body>
+</html>
